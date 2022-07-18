@@ -48,6 +48,7 @@ class ArticleControllerTest {
                 .andExpect(model().attributeExists("articleComments"));
     }
 
+    @Disabled
     @DisplayName("[view] [GET] 게시글 검색 페이지 - 정상")
     @Test
     void test3() throws Exception {
@@ -60,6 +61,7 @@ class ArticleControllerTest {
                 .andExpect(view().name("articles/search"));
     }
 
+    @Disabled
     @DisplayName("[view] [GET] 게시글 해시태그 검색 페이지 - 정상")
     @Test
     void test4() throws Exception {
