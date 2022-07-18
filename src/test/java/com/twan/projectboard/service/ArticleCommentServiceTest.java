@@ -41,14 +41,14 @@ class ArticleCommentServiceTest {
         // give
         Long articleId = 1L;
         ArticleComment expected = createArticleComment("content");
-        given(articleCommentRepository.findByArticleId(articleId)).willReturn(List.of(expected));
+        given(articleCommentRepository.findByArticle_Id(articleId)).willReturn(List.of(expected));
 
         // when
         List<ArticleCommentDto> actual = sut.searchArticleComments(articleId);
 
         // then
         assertThat(actual).hasSize(1).first().hasFieldOrPropertyWithValue("content", expected.getContent());
-        then(articleCommentRepository).should().findByArticleId(articleId);
+        then(articleCommentRepository).should().findByArticle_Id(articleId);
     }
 
     @DisplayName("댓글 생성 - 존재하는 게시글")
