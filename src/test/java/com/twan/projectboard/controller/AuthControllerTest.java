@@ -10,11 +10,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @DisplayName("인증 ViewController")
 @Import(SecurityConfig.class)
-@WebMvcTest
+@WebMvcTest(Void.class)
 public class AuthControllerTest {
 
     private final MockMvc mvc;
@@ -31,6 +32,7 @@ public class AuthControllerTest {
         // when && then
         mvc.perform(get("/login"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML));
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
+                .andDo(print());
     }
 }
