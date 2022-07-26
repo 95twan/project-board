@@ -2,7 +2,6 @@ package com.twan.projectboard.dto;
 
 import com.twan.projectboard.domain.Article;
 import com.twan.projectboard.domain.ArticleComment;
-import com.twan.projectboard.domain.UserAccount;
 
 import java.time.LocalDateTime;
 
