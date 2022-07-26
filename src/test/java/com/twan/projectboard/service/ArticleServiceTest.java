@@ -34,7 +34,7 @@ class ArticleServiceTest {
     @Mock
     private ArticleRepository articleRepository;
 
-    @DisplayName("게시글 검색 - 검색어 없이")
+    @DisplayName("게시글 리스트 검색 - 검색어 없이")
     @Test
     void test1() {
         // give
@@ -49,23 +49,23 @@ class ArticleServiceTest {
         then(articleRepository).should().findAll(pageable);
     }
 
-    @DisplayName("게시글 검색 - 검색어와 함께")
+    @DisplayName("게시글 리스트 검색 - 검색어와 함께")
     @Test
     void test2() {
         // give
         SearchType searchType = SearchType.TITLE;
         String searchKeyword = "title";
         Pageable pageable = Pageable.ofSize(20);
-        given(articleRepository.findByTitle(searchKeyword, pageable)).willReturn(Page.empty());
+        given(articleRepository.findByTitleContaining(searchKeyword, pageable)).willReturn(Page.empty());
         // when
         Page<ArticleDto> articles = sut.searchArticles(searchType, searchKeyword, pageable);
 
         // then
         assertThat(articles).isEmpty();
-        then(articleRepository).should().findByTitle(searchKeyword, pageable);
+        then(articleRepository).should().findByTitleContaining(searchKeyword, pageable);
     }
 
-    @DisplayName("게시글 - Id 조회")
+    @DisplayName("게시글 단건 검색 - Id로 조회")
     @Test
     void test3() {
         // give
@@ -84,7 +84,7 @@ class ArticleServiceTest {
         then(articleRepository).should().findById(articleId);
     }
 
-    @DisplayName("게시글 - 없는 Id 조회")
+    @DisplayName("게시글 단건 검색 - 없는 Id로 조회")
     @Test
     void test4() {
         // give
@@ -124,7 +124,7 @@ class ArticleServiceTest {
         given(articleRepository.getReferenceById(dto.id())).willReturn(article);
 
         // when
-        sut.updateaArticle( dto);
+        sut.updateArticle( dto);
 
         // then
         assertThat(article)
@@ -142,7 +142,7 @@ class ArticleServiceTest {
         given(articleRepository.getReferenceById(dto.id())).willThrow(EntityNotFoundException.class);
 
         // when
-        sut.updateaArticle(dto);
+        sut.updateArticle(dto);
 
         // then
         then(articleRepository).should().getReferenceById(dto.id());
