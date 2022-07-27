@@ -1,4 +1,4 @@
-package com.twan.projectboard.domain.type;
+package com.twan.projectboard.domain.constant;
 
 import lombok.Getter;
 
