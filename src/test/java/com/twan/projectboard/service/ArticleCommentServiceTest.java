@@ -7,6 +7,7 @@ import com.twan.projectboard.dto.ArticleCommentDto;
 import com.twan.projectboard.dto.UserAccountDto;
 import com.twan.projectboard.repository.ArticleCommentRepository;
 import com.twan.projectboard.repository.ArticleRepository;
+import com.twan.projectboard.repository.UserAccountRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,6 +35,8 @@ class ArticleCommentServiceTest {
     @Mock
     private ArticleRepository articleRepository;
 
+    @Mock
+    private UserAccountRepository userAccountRepository;
 
     @DisplayName("댓글 ID로 검색")
     @Test
@@ -57,6 +60,7 @@ class ArticleCommentServiceTest {
         // give
         ArticleCommentDto dto = createArticleCommentDto("댓글");
         given(articleRepository.getReferenceById(dto.articleId())).willReturn(createArticle());
+        given(userAccountRepository.getReferenceById(dto.userAccountDto().userId())).willReturn(createUserAccount());
         given(articleCommentRepository.save(any(ArticleComment.class))).willReturn(null);
 
         // when
@@ -64,6 +68,7 @@ class ArticleCommentServiceTest {
 
         // then
         then(articleRepository).should().getReferenceById(dto.articleId());
+        then(userAccountRepository).should().getReferenceById(dto.userAccountDto().userId());
         then(articleCommentRepository).should().save(any(ArticleComment.class));
     }
 
@@ -78,6 +83,7 @@ class ArticleCommentServiceTest {
 
         // then
         then(articleRepository).should().getReferenceById(dto.articleId());
+        then(userAccountRepository).shouldHaveNoInteractions();
         then(articleCommentRepository).shouldHaveNoInteractions();
     }
 
