@@ -2,7 +2,6 @@ package com.twan.projectboard.controller;
 
 import com.twan.projectboard.domain.constant.FormStatus;
 import com.twan.projectboard.domain.constant.SearchType;
-import com.twan.projectboard.dto.UserAccountDto;
 import com.twan.projectboard.dto.request.ArticleRequest;
 import com.twan.projectboard.dto.security.BoardPrincipal;
 import com.twan.projectboard.response.ArticleResponse;

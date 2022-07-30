@@ -1,6 +1,5 @@
 package com.twan.projectboard.controller;
 
-import com.twan.projectboard.dto.UserAccountDto;
 import com.twan.projectboard.dto.request.ArticleCommentRequest;
 import com.twan.projectboard.dto.security.BoardPrincipal;
 import com.twan.projectboard.service.ArticleCommentService;
