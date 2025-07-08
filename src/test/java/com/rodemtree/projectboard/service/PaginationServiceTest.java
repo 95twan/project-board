@@ -50,6 +50,7 @@ class PaginationServiceTest {
                 );
     }
 
+    @DisplayName("현재 설정되어 있는 페이지네이션 바의 길이를 알려준다.")
     @Test
     void givenNothing_whenCalling_thenReturnsCurrentBarLength() {
         // Given
