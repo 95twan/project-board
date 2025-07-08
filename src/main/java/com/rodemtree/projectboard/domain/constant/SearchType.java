@@ -1,4 +1,4 @@
-package com.rodemtree.projectboard.domain.type;
+package com.rodemtree.projectboard.domain.constant;
 
 import lombok.Getter;
 
