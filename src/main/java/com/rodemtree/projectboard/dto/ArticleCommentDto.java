@@ -2,6 +2,7 @@ package com.rodemtree.projectboard.dto;
 
 import com.rodemtree.projectboard.domain.Article;
 import com.rodemtree.projectboard.domain.ArticleComment;
+import com.rodemtree.projectboard.domain.UserAccount;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +16,13 @@ public record ArticleCommentDto(
         LocalDateTime modifiedAt,
         String modifiedBy
 ) {
+    public static ArticleCommentDto of(
+            Long articleId,
+            UserAccountDto userAccountDto,
+            String content) {
+        return new ArticleCommentDto(null, articleId, userAccountDto, content, null, null, null, null);
+    }
+
     public static ArticleCommentDto of(
             Long id,
             Long articleId,
@@ -40,10 +48,10 @@ public record ArticleCommentDto(
         );
     }
 
-    public ArticleComment toEntity(Article entity) {
+    public ArticleComment toEntity(Article article, UserAccount userAccount) {
         return ArticleComment.of(
-                entity,
-                userAccountDto.toEntity(),
+                article,
+                userAccount,
                 content
         );
     }
