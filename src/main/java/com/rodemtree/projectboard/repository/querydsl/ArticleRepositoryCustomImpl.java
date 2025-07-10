@@ -1,6 +1,5 @@
 package com.rodemtree.projectboard.repository.querydsl;
 
-import com.querydsl.jpa.JPQLQuery;
 import com.rodemtree.projectboard.domain.Article;
 import com.rodemtree.projectboard.domain.QArticle;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
