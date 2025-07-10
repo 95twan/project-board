@@ -1,6 +1,5 @@
 package com.rodemtree.projectboard.repository;
 
-import com.rodemtree.projectboard.config.JpaConfig;
 import com.rodemtree.projectboard.domain.Article;
 import com.rodemtree.projectboard.domain.UserAccount;
 import org.junit.jupiter.api.DisplayName;

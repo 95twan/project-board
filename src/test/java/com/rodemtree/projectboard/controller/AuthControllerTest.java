@@ -1,6 +1,5 @@
 package com.rodemtree.projectboard.controller;
 
-import com.rodemtree.projectboard.config.SecurityConfig;
 import com.rodemtree.projectboard.config.TestSecurityConfig;
 import com.rodemtree.projectboard.service.ArticleService;
 import com.rodemtree.projectboard.service.PaginationService;
@@ -15,9 +14,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.BDDMockito.then;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @DisplayName("View 컨트롤러 - 인증")
 @Import(TestSecurityConfig.class)

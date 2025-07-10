@@ -16,8 +16,7 @@ import java.util.List;
 public interface ArticleCommentRepository extends
         JpaRepository<ArticleComment, Long>,
         QuerydslPredicateExecutor<ArticleComment>,
-        QuerydslBinderCustomizer<QArticleComment>
-{
+        QuerydslBinderCustomizer<QArticleComment> {
     List<ArticleComment> findByArticle_Id(Long articleId);
 
     void deleteByIdAndUserAccount_UserId(Long articleCommentId, String userId);

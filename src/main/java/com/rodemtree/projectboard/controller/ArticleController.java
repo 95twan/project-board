@@ -3,7 +3,6 @@ package com.rodemtree.projectboard.controller;
 import com.rodemtree.projectboard.domain.constant.FormStatus;
 import com.rodemtree.projectboard.domain.constant.SearchType;
 import com.rodemtree.projectboard.dto.ArticleWithCommentsDto;
-import com.rodemtree.projectboard.dto.UserAccountDto;
 import com.rodemtree.projectboard.dto.request.ArticleRequest;
 import com.rodemtree.projectboard.dto.response.ArticleResponse;
 import com.rodemtree.projectboard.dto.response.ArticleWithCommentsResponse;
