@@ -30,7 +30,7 @@ public class AuthControllerTest {
     @MockitoBean
     private PaginationService paginationService;
 
-    public AuthControllerTest(@Autowired MockMvc mvc) {
+    AuthControllerTest(@Autowired MockMvc mvc) {
         this.mvc = mvc;
     }
 
