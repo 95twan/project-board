@@ -2,6 +2,7 @@ package com.rodemtree.projectboard.service;
 
 import com.rodemtree.projectboard.domain.Article;
 import com.rodemtree.projectboard.domain.ArticleComment;
+import com.rodemtree.projectboard.domain.Hashtag;
 import com.rodemtree.projectboard.domain.UserAccount;
 import com.rodemtree.projectboard.dto.ArticleCommentDto;
 import com.rodemtree.projectboard.dto.UserAccountDto;
@@ -18,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -169,7 +171,7 @@ class ArticleCommentServiceTest {
 
     private ArticleComment createArticleComment(String content) {
         return ArticleComment.of(
-                Article.of(createUserAccount(), "title", "content", "hashtag"),
+                createArticle(),
                 createUserAccount(),
                 content
         );
@@ -186,11 +188,17 @@ class ArticleCommentServiceTest {
     }
 
     private Article createArticle() {
-        return Article.of(
+        Article article = Article.of(
                 createUserAccount(),
                 "title",
-                "content",
-                "#java"
+                "content"
         );
+        article.addHashtags(Set.of(createHashtag()));
+
+        return article;
+    }
+
+    private Hashtag createHashtag() {
+        return Hashtag.of("java");
     }
 }
