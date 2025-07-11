@@ -6,52 +6,49 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @ToString(callSuper = true)
 @Table(indexes = {
-        @Index(columnList = "content"),
+        @Index(columnList = "hashtagName", unique = true),
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy")
 })
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class ArticleComment extends AuditingFields {
+public class Hashtag extends AuditingFields {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter
-    @ManyToOne(optional = false)
-    private Article article;
+    @ToString.Exclude
+    @ManyToMany(mappedBy = "hashtags")
+    private Set<Article> articles = new LinkedHashSet<>();
 
     @Setter
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "userId")
-    private UserAccount userAccount;
+    @Column(nullable = false, length = 50)
+    private String hashtagName;
 
-    @Setter
-    @Column(nullable = false, length = 2000)
-    private String content;
 
-    protected ArticleComment() {
+    protected Hashtag() {
     }
 
-    private ArticleComment(Article article, UserAccount userAccount, String content) {
-        this.article = article;
-        this.content = content;
-        this.userAccount = userAccount;
+    private Hashtag(String hashtagName) {
+        this.hashtagName = hashtagName;
     }
 
-    public static ArticleComment of(Article article, UserAccount userAccount, String content) {
-        return new ArticleComment(article, userAccount, content);
+    public static Hashtag of(String hashtagName) {
+        return new Hashtag(hashtagName);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ArticleComment that)) return false;
+        if (!(o instanceof Hashtag that)) return false;
         return this.getId() != null && this.getId().equals(that.getId());
     }
 
