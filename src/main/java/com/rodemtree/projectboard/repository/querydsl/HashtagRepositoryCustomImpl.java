@@ -1,8 +1,6 @@
 package com.rodemtree.projectboard.repository.querydsl;
 
-import com.rodemtree.projectboard.domain.Article;
 import com.rodemtree.projectboard.domain.Hashtag;
-import com.rodemtree.projectboard.domain.QArticle;
 import com.rodemtree.projectboard.domain.QHashtag;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 

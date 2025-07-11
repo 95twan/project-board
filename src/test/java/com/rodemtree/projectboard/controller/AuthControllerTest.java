@@ -50,5 +50,6 @@ public class AuthControllerTest {
     }
 
     @TestComponent
-    static class EmptyController {}
+    static class EmptyController {
+    }
 }

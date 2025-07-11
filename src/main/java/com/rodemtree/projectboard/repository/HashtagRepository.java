@@ -16,5 +16,6 @@ public interface HashtagRepository extends
         HashtagRepositoryCustom,
         QuerydslPredicateExecutor<Hashtag> {
     Optional<Hashtag> findByHashtagName(String hashtagName);
+
     List<Hashtag> findByHashtagNameIn(Set<String> hashtagNames);
 }
