@@ -6,7 +6,9 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @ToString(callSuper = true)
@@ -32,20 +34,35 @@ public class ArticleComment extends AuditingFields {
     private UserAccount userAccount;
 
     @Setter
+    @Column(updatable = false)
+    private Long parentCommentId;
+
+    @ToString.Exclude
+    @OrderBy("createdAt DESC")
+    @OneToMany(mappedBy = "parentCommentId", cascade = CascadeType.ALL)
+    private Set<ArticleComment> childComments = new LinkedHashSet<>();
+
+    @Setter
     @Column(nullable = false, length = 2000)
     private String content;
 
     protected ArticleComment() {
     }
 
-    private ArticleComment(Article article, UserAccount userAccount, String content) {
+    private ArticleComment(Article article, UserAccount userAccount, Long parentCommentId, String content) {
         this.article = article;
-        this.content = content;
         this.userAccount = userAccount;
+        this.parentCommentId = parentCommentId;
+        this.content = content;
     }
 
     public static ArticleComment of(Article article, UserAccount userAccount, String content) {
-        return new ArticleComment(article, userAccount, content);
+        return new ArticleComment(article, userAccount, null, content);
+    }
+
+    public void addChildComment(ArticleComment childComment) {
+        childComment.setParentCommentId(this.getId());
+        this.getChildComments().add(childComment);
     }
 
     @Override
