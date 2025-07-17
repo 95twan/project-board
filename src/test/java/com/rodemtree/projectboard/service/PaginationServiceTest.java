@@ -44,10 +44,11 @@ class PaginationServiceTest {
                 arguments(3, 13, List.of(1, 2, 3, 4, 5)),
                 arguments(4, 13, List.of(2, 3, 4, 5, 6)),
                 arguments(5, 13, List.of(3, 4, 5, 6, 7)),
+                arguments(6, 13, List.of(4, 5, 6, 7, 8)),
                 arguments(10, 13, List.of(8, 9, 10, 11, 12)),
                 arguments(11, 13, List.of(9, 10, 11, 12)),
                 arguments(12, 13, List.of(10, 11, 12))
-                );
+        );
     }
 
     @DisplayName("현재 설정되어 있는 페이지네이션 바의 길이를 알려준다.")

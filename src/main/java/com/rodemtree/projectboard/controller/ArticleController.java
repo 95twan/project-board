@@ -3,7 +3,6 @@ package com.rodemtree.projectboard.controller;
 import com.rodemtree.projectboard.domain.constant.FormStatus;
 import com.rodemtree.projectboard.domain.constant.SearchType;
 import com.rodemtree.projectboard.dto.ArticleWithCommentsDto;
-import com.rodemtree.projectboard.dto.UserAccountDto;
 import com.rodemtree.projectboard.dto.request.ArticleRequest;
 import com.rodemtree.projectboard.dto.response.ArticleResponse;
 import com.rodemtree.projectboard.dto.response.ArticleWithCommentsResponse;
@@ -39,9 +38,11 @@ public class ArticleController {
     ) {
         Page<ArticleResponse> articles = articleService.searchArticles(searchType, searchKeyword, pageable).map(ArticleResponse::from);
         List<Integer> barNumbers = paginationService.getPaginationBarNumbers(pageable.getPageNumber(), articles.getTotalPages());
+
         map.addAttribute("articles", articles);
         map.addAttribute("paginationBarNumbers", barNumbers);
         map.addAttribute("searchTypes", SearchType.values());
+        map.addAttribute("searchTypeHashtag", SearchType.HASHTAG);
 
         return "articles/index";
     }
@@ -50,9 +51,11 @@ public class ArticleController {
     public String articles(@PathVariable Long articleId, ModelMap map) {
         ArticleWithCommentsDto articleWithCommentsDto = articleService.getArticleWithComments(articleId);
         ArticleWithCommentsResponse article = ArticleWithCommentsResponse.from(articleWithCommentsDto);
+
         map.addAttribute("article", article);
         map.addAttribute("articleComments", article.articleCommentsResponse());
         map.addAttribute("totalCount", articleService.getArticleCount());
+        map.addAttribute("searchTypeHashtag", SearchType.HASHTAG);
 
         return "articles/detail";
     }

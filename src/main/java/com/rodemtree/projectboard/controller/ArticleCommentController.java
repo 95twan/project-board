@@ -1,6 +1,5 @@
 package com.rodemtree.projectboard.controller;
 
-import com.rodemtree.projectboard.dto.UserAccountDto;
 import com.rodemtree.projectboard.dto.request.ArticleCommentRequest;
 import com.rodemtree.projectboard.dto.security.BoardPrincipal;
 import com.rodemtree.projectboard.service.ArticleCommentService;
